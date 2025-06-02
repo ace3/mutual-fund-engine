@@ -1,0 +1,44 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Output of the go build command
+/build/
+
+# Dependency directories (vendor/)
+vendor/
+
+# Go workspace file
+go.work
+
+# IDE/editor files
+.idea/
+.vscode/
+*.swp
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+
+# Generated proto files (optional, if you want to ignore them)
+pkg/pb/nobi/*.pb.go
+
+# Node/npm (if any)
+node_modules/
+
+# Logs
+*.log
+
+# Backup files
+*~
+
+# Test output
+coverage.out

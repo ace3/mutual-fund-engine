@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package nobi;
+
+option go_package = "pkg/pb/nobi";
+
+service NobiInvestmentService {
+  rpc AddUser(AddUserRequest) returns (AddUserResponse);
+  rpc UpdateTotalBalance(UpdateTotalBalanceRequest) returns (UpdateTotalBalanceResponse);
+  rpc ListNAB(ListNABRequest) returns (ListNABResponse);
+  rpc TopUp(TopUpRequest) returns (TopUpResponse);
+  rpc Withdraw(WithdrawRequest) returns (WithdrawResponse);
+  rpc ListMembers(ListMembersRequest) returns (ListMembersResponse);
+}
+
+message AddUserRequest {
+  string name = 1;
+  string username = 2;
+}
+message AddUserResponse {
+  int32 user_id = 1;
+}
+
+message UpdateTotalBalanceRequest {
+  double current_balance = 1;
+}
+message UpdateTotalBalanceResponse {
+  double nab_amount = 1;
+}
+
+message ListNABRequest {}
+message NABEntry {
+  double nab = 1;
+  string date = 2;
+}
+message ListNABResponse {
+  repeated NABEntry nabs = 1;
+}
+
+message TopUpRequest {
+  int32 user_id = 1;
+  double amount_rupiah = 2;
+}
+message TopUpResponse {
+  double nilai_unit_hasil_topup = 1;
+  double nilai_unit_total = 2;
+  double saldo_rupiah_total = 3;
+}
+
+message WithdrawRequest {
+  int32 user_id = 1;
+  double amount_rupiah = 2;
+}
+message WithdrawResponse {
+  double nilai_unit_setelah_withdraw = 1;
+  double nilai_unit_total = 2;
+  double saldo_rupiah_total = 3;
+}
+
+message ListMembersRequest {
+  optional int32 user_id = 1;
+  optional int32 page = 2;
+  optional int32 limit = 3;
+}
+message MemberEntry {
+  int32 user_id = 1;
+  double total_unit_per_uid = 2;
+  double total_amountrupiah_per_uid = 3;
+  double current_nab = 4;
+}
+message ListMembersResponse {
+  repeated MemberEntry members = 1;
+}
