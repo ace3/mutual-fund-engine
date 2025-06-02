@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  mutual-fund-engine:
+    build: .
+    ports:
+      - '8080:8080'
+    environment:
+      - ENV=production
+    depends_on:
+      - mysql
+    volumes:
+      - ./internal/config/config.yaml:/root/internal/config/config.yaml:ro
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mutualfund
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - '3306:3306'
+    volumes:
+      - db_data:/var/lib/mysql
+volumes:
+  db_data:
